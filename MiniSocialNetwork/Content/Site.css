@@ -1,0 +1,330 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+.classic-input input,
+.classic-input select,
+.classic-input textarea {
+    max-width: 280px;
+}
+
+/*
+    Form styling
+*/
+
+.classic-form {
+    width: 80%;
+    clear: both;
+}
+
+.classic-form input {
+    width: 100%;
+    clear: both;
+    border: 1px solid #bdbdbd;
+    border-radius: 10px;
+    margin-bottom: 5px;
+    padding-left: 4px;
+    height: 2em;
+}
+
+.classic-form input:focus {
+    outline: none;
+}
+
+/*
+    Profile styling
+*/
+
+.profile-body {
+    width:100%;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: auto;
+    grid-template-areas:
+        "main main"
+        "buttons buttons"
+        "about details";
+}
+.profile-main {
+    grid-area: main;
+    justify-self: center;
+    text-align: center;
+}
+.profile-main img {
+    width: 200px;
+    border-radius: 50%;
+}
+
+.profile-buttons {
+    grid-area: buttons;
+    justify-self: right;
+}
+
+.profile-about {
+    grid-area: about;
+}
+
+.profile-details {
+    grid-area: details;
+}
+
+.profiles-holder {
+    width: 70%;
+}
+
+/*
+    Small profiles (search styling)
+*/
+
+.search-input {
+    width: 100%;
+    max-width: 200px;
+    clear: both;
+    border: 1px solid #bdbdbd;
+    border-radius: 10px;
+    margin-bottom: 5px;
+    padding-left: 4px;
+    height: 2em;
+}
+
+.search-input:focus {
+    outline: none;
+}
+
+.search-result-body {
+    width: 70%;
+}
+
+.small-profile-holder {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+}
+
+.small-profile-details {
+    display: inline-block;
+    height: 100%;
+}
+
+.small-profile-details p {
+    display: inline-block;
+    margin-top: 10px;
+    margin-left: 15px;
+    font-size: 1.2em;
+    vertical-align: middle;
+}
+
+.small-profile-details img{
+    width: 50px;
+    float: left;
+    border-radius: 50%;
+}
+
+.small-profile-buttons {
+    align-self: flex-end;
+}
+
+.small-profile-buttons form{
+    display: inline;
+}
+/*
+    Group view stlying
+*/
+
+.group-body {
+    width:100%;
+    display: grid;
+    grid-template-columns: 70% auto;
+    grid-template-rows: auto;
+    grid-template-areas:
+        "main info"
+        "details buttons";
+}
+
+.group-main {
+    grid-area: main;
+}
+
+.group-info {
+    grid-area: info;
+    justify-self: end;
+}
+
+.group-details {
+    grid-area: details;
+}
+
+.group-buttons {
+    grid-area: buttons;
+    justify-self: end;
+}
+
+.group-buttons a {
+    margin: 2px;
+}
+
+.group-view-button {
+    float: right;
+    margin-top: 2px;
+}
+
+/*
+    Message styling
+*/
+
+.group-chat-body {
+    width:100%;
+    display: grid;
+    grid-template-columns: 70% auto;
+    grid-template-rows: auto;
+    grid-template-areas:
+        "details details"
+        "chat users";
+}
+
+.group-chat-details {
+    grid-area: details;
+    border: 1px solid gray;
+    padding: 5px;
+}
+.group-chat-chat {
+    grid-area: chat;
+    height: 500px;
+    border: 1px solid gray;
+    padding: 5px;
+}
+.group-chat-users {
+    grid-area: users;
+    border: 1px solid gray;
+    padding: 5px;
+}
+
+.message-body {
+    display: flex;
+    height:100%;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.message-list {
+    display: flex;
+    list-style-type: none;
+    padding: 0px;
+    flex-direction: column;
+    overflow-y: scroll;
+}
+
+.message-list p {
+    margin : 0px;
+}
+
+.message-self {
+    max-width: 45%;
+    align-self: flex-end;
+    display:grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+    grid-template-areas:
+        ". title image"
+        "content content image";
+    justify-items: end;
+}
+
+.message-others {
+    display:grid;
+    align-self: flex-start;
+    max-width: 45%;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+    grid-template-areas:
+        "image title ."
+        "image content content";
+}
+
+.message-title {
+    grid-area: title;
+    font-size: 0.8em;
+    color: gray;
+}
+
+.message-content {
+    grid-area: content;
+}
+.message-self .message-content {
+    text-align: right;
+}
+
+.message-self .message-image {
+    grid-area: image;
+    width:30px;
+    margin-left: 10px;
+    margin-top: 5px;
+}
+
+.message-others .message-image {
+    grid-area: image;
+    width:30px;
+    margin-right: 8px;
+    margin-top: 5px;
+}
+
+.message-input input{
+    width: 100%;
+    clear: both;
+    border: 1px solid #bdbdbd;
+    border-radius: 10px;
+    margin-bottom: 5px;
+    padding-left: 4px;
+    padding-right: 55px;
+    height: 2em;
+
+}
+.message-input button {
+    position: absolute;
+    margin-left: -50px;
+    border-radius: 10px;
+    outline:none;
+}
+.message-input button:focus {
+    outline: none !important;
+}
+.message-input input:focus {
+    outline: none !important;
+}
+
+/*
+    Users from chat design
+*/
+
+.user-list {
+    list-style-type: none;
+    padding: 0px;
+}
+
+.user-design {
+    padding: 2px;
+}
+.user-design img {
+    width: 30px;
+}
+
+.user-list a:hover {
+    text-decoration: none;
+}

@@ -1,0 +1,49 @@
+﻿@model MiniSocialNetwork.Models.Group
+@{
+    ViewBag.Title = "Edit group " + Model.Name;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit group</title>
+    @Styles.Render("~/Content/Site.css")
+</head>
+
+<body>
+    <h2>@ViewBag.Title</h2>
+    <hr />
+    @if (ViewBag.Message != null)
+    {
+        @ViewBag.Message;
+        <hr />
+    }
+
+    @using (Html.BeginForm("Edit", "Group", FormMethod.Post, new { @class = "classic-form" }))
+    {
+
+        @Html.HttpMethodOverride(HttpVerbs.Put)
+        @Html.ValidationSummary(false, null, new { @class = "text-danger" })
+        
+        @Html.HiddenFor(m => m.GroupId)
+        @Html.HiddenFor(m => m.CreatorId)
+
+        @Html.Label("Name", "Group Name")
+        <br />
+        @Html.EditorFor(m => m.Name)
+        <br />
+        @Html.ValidationMessageFor(m => m.Name, null, new { @class = "text-danger" })
+        <br />
+
+        @Html.Label("Details", "Group Details")
+        <br />
+        @Html.EditorFor(m => m.Details)
+        <br />
+        @Html.ValidationMessageFor(m => m.Details, null, new { @class = "text-danger" })
+        <br />
+        <br />
+        <button class="btn btn-sm btn-success" type="submit">Edit group</button>
+    }
+</body>
+</html>

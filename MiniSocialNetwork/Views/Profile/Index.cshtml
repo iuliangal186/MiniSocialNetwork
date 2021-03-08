@@ -1,0 +1,108 @@
+﻿@model MiniSocialNetwork.Models.Profile
+@{
+    ViewBag.Title = "Profiles";
+}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+</head>
+
+<body>
+    <h2>@ViewBag.Title</h2>
+    @if (ViewBag.Message != null)
+    {
+        @ViewBag.Message;
+        <hr />
+    }
+    <a href="/Profile/New">Create your profile</a>
+    <br />
+    <a href="/Profile/Edit">Edit your profile</a>
+    <hr />
+    <a href="/Profile/Friend">Your friends</a> <br />
+    <a href="/Profile/IncomingFriends">Incoming friends requests</a>
+    <hr />
+    <div>
+        <p>Search an user</p>
+        <i class="fa fa-search"></i>
+        <input type="text" class="search-input" id="SearchTextBox" placeholder="Search user" />
+        <button class="btn btn-sm btn-success" id="SearchButton" type="button">Search</button>
+    </div>
+    <hr />
+
+    @*for (var i = 0; i < ViewBag.Profiles.GetType().Length; i ++)*@
+    <div class="profiles-holder">
+        @foreach (MiniSocialNetwork.Models.Profile profile in ViewBag.Profiles)
+        {
+            @Html.Partial("ProfilePage", profile)
+            <a class="btn btn-sm btn-success" href="/Profile/View/@profile.ProfileId">View profile</a>
+            <hr />
+            //if (profile.GetType().GetProperties().Length > 0)
+            //{
+            //    var linkProfile = "";
+            //    //<p>@profile.GetType().GetProperties().Length</p>
+            //    foreach (var prop in profile.GetType().GetProperties())
+            //    {
+            //        object propValue = prop.GetValue(profile, null);
+            //        if (prop.Name == "ProfileId")
+            //        {
+            //            linkProfile = "/Profile/View/" + propValue;
+            //        }
+            //        <p><strong>@prop.Name:</strong> @propValue</p>
+            //    }
+            //    <a href=@linkProfile >View profile</a>
+            //    <hr />
+            //    //<h3>Id:     @profile.ProfileId</h3> //I wonder why this doesn't work Sadge
+            //    //<p><strong>Email:</strong>          @profile.Email</p>
+            //    //<p><strong>Name:</strong>           @(profile.FirstName + ' ' + profile.LastName)</p>
+            //    //<p><strong>Type:</strong>           @profile.Type</p>
+            //    //<p><strong>Profile Picture:</strong> @profile.ProfilePictureUrl</p>
+            //    //<p><strong>Status:</strong>         @profile.Status</p>
+            //    //<p><strong>Location:</strong>       @profile.Location</p>
+            //    //<p><strong>Biography:</strong>       @profile.Biography</p>
+            //    //<p><strong>Private:</strong>       @profile.Private</p>
+            //    //<p><strong>Birth Date:</strong>       @profile.BirthDate</p>
+            //}
+        }
+    </div>
+    <div>
+        <nav aria-label="Page navigation">
+            <ul class="pagination">
+                <li>
+                    <a href="/Profile/Index?page=1" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+
+                @for (int i = 1; i <= ViewBag.lastPage; i++)
+                {
+                    <li><a href="/Profile/Index?page=@i">@(i)</a></li>
+                }
+
+                <li>
+                    <a href="/Profile/Index?page=@(ViewBag.lastPage)" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</body>
+</html>
+
+<script>
+    $("#SearchTextBox").keypress(function (e) {
+        if (e.keyCode == 13) {
+            // window.location.replace doesn't add to history
+            //window.location.replace("/Profile/Search?page=1&search=" + $(this).val());
+            window.location.href = "/Profile/Search?page=1&search=" + $(this).val();
+        }
+    })
+    $("#SearchButton").click(function () {
+        window.location.href = "/Profile/Search?page=1&search=" + $("#SearchTextBox").val();
+    })
+</script>

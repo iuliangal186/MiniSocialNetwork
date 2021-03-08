@@ -1,0 +1,18 @@
+﻿
+
+<div class="small-profile-holder">
+    <div class="small-profile-details">
+        @if (Model.ProfilePictureUrl == "" || Model.ProfilePictureUrl == null)
+        {
+            <img src="https://icon-library.com/images/default-user-icon/default-user-icon-13.jpg" class="small-user-image">
+        }
+        else
+        {
+            <img src=@Model.ProfilePictureUrl class="small-user-image">
+        }
+        <p>@Model.FullName</p>
+    </div>
+    <div class="small-profile-buttons">
+        <a class="btn btn-sm btn-success" href="/Profile/View/@Model.ProfileId">View profile</a>
+    </div>
+</div>

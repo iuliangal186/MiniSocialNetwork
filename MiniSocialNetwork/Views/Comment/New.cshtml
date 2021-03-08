@@ -1,0 +1,20 @@
+﻿@model MiniSocialNetwork.Models.Comment
+
+@{
+    ViewBag.Title = "New";
+}
+
+<h2>Add Comment</h2>
+<form method="post" action="/Comment/New">
+    @Html.Label("Content", "Comment Content")
+    <br />
+    @Html.TextArea("Content", null, new { @class = "form-control" })
+    <br />
+    <br />
+
+    <label>Select the Post</label>
+    @Html.DropDownListFor(m => m.PostId, new SelectList(Model.Posts, "Value", "Text"),
+    "Select the Post", new { @class = "form-control" })
+    <br />
+    <button type="submit">Add comment</button>
+</form>

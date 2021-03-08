@@ -1,0 +1,126 @@
+﻿@model MiniSocialNetwork.Models.Profile
+@{
+    ViewBag.Title = "Create your profile";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/Site.css")
+</head>
+
+<body>
+    <h2>@ViewBag.Title</h2>
+    <hr />
+    @if (ViewBag.Message != null)
+    {
+        @ViewBag.Message;
+        <hr />
+    }
+
+    @using (Html.BeginForm("New", "Profile", FormMethod.Post, new { @class = "classic-form" }))
+    {
+        @Html.ValidationSummary(false, null, new { @class = "text-danger" })
+
+        @Html.Label("FirstName", "First Name")
+        <br />
+        @Html.TextBox("FirstName", null)
+        <br />
+        @Html.ValidationMessageFor(m => m.FirstName, null, new { @class = "text-danger" })
+        <br />
+
+        @Html.Label("LastName", "Last Name")
+        <br />
+        @Html.TextBox("LastName", null)
+        <br />
+        @Html.ValidationMessageFor(m => m.LastName, null, new { @class = "text-danger" })
+        <br />
+
+        @Html.Label("ProfilePictureUrl", "Profile picture link")
+        <br />
+        @Html.TextBox("ProfilePictureUrl", null)
+        <br />
+        @Html.ValidationMessageFor(m => m.ProfilePictureUrl, null, new { @class = "text-danger" })
+        <br />
+
+        @Html.Label("Status", "Status")
+        <br />
+        @Html.TextBox("Status", null)
+        //@Html.ValidationMessageFor(m => m.Status, null, new { @class = "text-danger" })
+        <br />
+
+        @Html.Label("Location", "Location")
+        <br />
+        @Html.TextBox("Location", null)
+        //@Html.ValidationMessageFor(m => m.Location, null, new { @class = "text-danger" })
+        <br />
+
+        @Html.Label("Biography", "Bio")
+        <br />
+        @Html.TextArea("Biography", "")
+        //@Html.ValidationMessageFor(m => m.Biography, null, new { @class = "text-danger" })
+        <br />
+
+        @Html.Label("Private", "Private")
+        <br />
+        @(Html.DropDownListFor(m => m.Private,
+                                    new SelectList (
+                                        new List<Object>{
+                                            new { value = true, text = "Yes"},
+                                            new { value = false, text = "No"},
+                                        },
+                                        "value",
+                                        "text"
+                                    ),
+                                    "Tip"
+                                )
+                            )
+        //@Html.ValidationMessageFor(m => m.Private, null, new { @class = "text-danger" })
+        <br />
+
+        @Html.Label("BirthDate", "Birth Date")
+        <br />
+        @Html.EditorFor(m => m.BirthDate, new { @type = "date" })
+        //@Html.TextBoxFor(m => m.BirthDate, "{0:yyyy-MM-dd}", new { @class = "date-input", @placeholder = "Data" })
+        //@Html.ValidationMessageFor(m => m.BirthDate, null, new { @class = "text-danger" })
+        <br />
+        <br />
+        <button class="btn btn-sm btn-success" type="submit">Create profile</button>
+
+    }
+    <!--<form method="post" action="/Profile/New" class="classicForm">
+
+        <label>Profile Picture Url:</label>
+        <br />
+        <input type="text" name="ProfilePictureUrl" />
+        <br />
+        <label>Status:</label>
+        <br />
+        <input type="text" name="Status" />
+        <br />
+        <label>Location:</label> 
+        <br />
+        <input type="text" name="Location" />
+        <br />
+        <label>Biography:</label> 
+        <br />
+        <input type="text" name="Biography" />
+        <br />
+        <label>Private:</label> 
+        <br />
+        <select name="Private">
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+        </select>
+        <br />
+        <label>Birth Date:</label> 
+        <br />
+        <input type="date" class="datepicker" name="BirthDate" />
+        <br />
+        <button type="submit">Create</button>
+    </form>
+    <hr />-->
+</body>
+</html>

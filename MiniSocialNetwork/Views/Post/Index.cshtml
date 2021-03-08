@@ -1,0 +1,27 @@
+﻿
+@{
+
+    ViewBag.Title = "Posts list";
+}
+@if (TempData.ContainsKey("message"))
+{
+    <h1>@ViewBag.message</h1>
+}
+
+<h2>@ViewBag.Title</h2>
+
+@foreach (var post in ViewBag.Posts)
+{
+    <p>@post.Content</p>
+    <a class="btn btn-success" href="/Post/Show/@post.PostId">Show post</a>
+    <a class="btn btn-success" href="/Post/Edit/@post.PostId">Edit post</a>
+    
+    <br />
+    <hr />
+    <br />
+}
+<br />
+<a class="btn btn-info" href="/Post/New">Add Post</a>
+
+<br />
+

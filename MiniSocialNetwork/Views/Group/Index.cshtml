@@ -1,0 +1,57 @@
+﻿@model MiniSocialNetwork.Models.Group
+@{
+    ViewBag.Title = "Groups";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+</head>
+
+<body>
+    <h2>@ViewBag.Title</h2>
+    @if (ViewBag.Message != null)
+    {
+        @ViewBag.Message;
+        <hr />
+    }
+    <a href="/Group/New">Create your own group</a>
+    <hr />
+
+    <div class="groups-holder">
+        @foreach (MiniSocialNetwork.Models.Group group in ViewBag.Groups)
+        {
+            @Html.Partial("GroupComponent", group)
+            <a class="btn btn-sm btn-success group-view-button" href="/Group/View/@group.GroupId">View group</a>
+            <br />
+            <hr />
+        }
+    </div>
+    <div>
+        <nav aria-label="Page navigation">
+            <ul class="pagination">
+                <li>
+                    <a href="/Group/Index?page=1" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+
+                @for (int i = 1; i <= ViewBag.lastPage; i++)
+                {
+                    <li><a href="/Group/Index?page=@i">@(i)</a></li>
+                }
+
+                <li>
+                    <a href="/Group/Index?page=@(ViewBag.lastPage)" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</body>
+</html>
+

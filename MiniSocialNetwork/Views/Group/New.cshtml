@@ -1,0 +1,45 @@
+﻿@model MiniSocialNetwork.Models.Group
+@{
+    ViewBag.Title = "Create your own group";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create group</title>
+    @Styles.Render("~/Content/Site.css")
+</head>
+
+<body>
+    <h2>@ViewBag.Title</h2>
+    <hr />
+    @if (ViewBag.Message != null)
+    {
+        @ViewBag.Message;
+        <hr />
+    }
+
+    @using (Html.BeginForm("New", "Group", FormMethod.Post, new { @class = "classic-form" }))
+    {
+       
+        @Html.ValidationSummary(false, null, new { @class = "text-danger" })
+
+        @Html.Label("Name", "Group Name")
+        <br />
+        @Html.TextBox("Name", null)
+        <br />
+        @Html.ValidationMessageFor(m => m.Name, null, new { @class = "text-danger" })
+        <br />
+
+        @Html.Label("Details", "Group Details")
+        <br />
+        @Html.TextArea("Details", "")
+        <br />
+        @Html.ValidationMessageFor(m => m.Details, null, new { @class = "text-danger" })
+        <br />
+        <br />
+        <button class="btn btn-sm btn-success" type="submit">Create group</button>
+    }
+</body>
+</html>

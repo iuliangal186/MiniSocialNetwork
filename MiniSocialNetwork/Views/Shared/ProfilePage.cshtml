@@ -1,0 +1,54 @@
+﻿
+<div class="profile-body">
+    <div class="profile-main">
+        @if (Model.ProfilePictureUrl == "" || Model.ProfilePictureUrl == null)
+        {
+            <img src="https://icon-library.com/images/default-user-icon/default-user-icon-13.jpg" class="profile-user-image" />
+        } else
+        {
+            <img src=@Model.ProfilePictureUrl alt="Profile image" class="profile-user-image" />
+        }
+        @if (Model.FullName != "" && Model.FullName != null)
+        {
+            <h2>@Model.FullName</h2>
+        } else
+        {
+            <h2>@(Model.FirstName + ' ' + Model.LastName)</h2>
+        }
+    </div>
+    <div class="profile-buttons">
+        <form method="post" action="/Profile/AddFriend">
+            <input type="hidden" name="UserId" value="@Model.UserId" />
+            <button type="submit">Add Friend</button>
+        </form>
+        </div>
+    <div class="profile-about">
+        <h3 style="margin-left:20px">About:</h3>
+        @if (Model.Location != "" && Model.Location != null)
+        {
+            <p>From: @Model.Location</p>
+        } else
+        {
+            <p>Unknown location</p>
+        }
+        @if (Model.BirthDate != null)
+        {
+            <p>Birthdate: @Model.BirthDate.Date.ToString("yyyy-MM-dd")</p>
+        }
+    </div>
+    <div class="profile-details">
+        @if (Model.Biography != "" && Model.Biography != null)
+        {
+            <h3 style="margin-left:20px">Bio:</h3>
+            <p>@Model.Biography</p>
+        } else
+        {
+            <p>This user has no bio yet</p>
+        }
+    </div>
+</div>
+<script>
+    $("#AddFriend").click(function () {
+        window.location.href = "/Profile/AddFriend?page=1&search=" + $(this).val();
+    })
+</script>

@@ -1,0 +1,38 @@
+﻿@model MiniSocialNetwork.Models.Profile
+@{
+    ViewBag.Title = "Friends List";
+}
+
+<h2>@ViewBag.Title</h2>
+<hr />
+@if (ViewBag.Message != null)
+{
+    @ViewBag.Message;
+    <hr />
+}
+
+@if (ViewBag.Friends != null)
+{
+    foreach (MiniSocialNetwork.Models.Profile profile in ViewBag.Friends)
+    {
+        <div class="small-profile-holder">
+            <div class="small-profile-details">
+                <img src=@profile.ProfilePictureUrl class="small-user-image">
+                <p>@profile.FullName</p>
+            </div>
+            <div class="small-profile-buttons">
+                <a class="btn btn-sm btn-success" href="/Profile/View/@profile.ProfileId">View profile</a>
+                <form method="post" action="/Profile/AcceptFriend/@profile.ProfileId">
+                    @Html.HttpMethodOverride(HttpVerbs.Put)
+                    <button class="btn btn-sm btn-success" type="submit">Accept</button>
+                </form>
+                <form method="post" action="/Profile/DeleteFriend/@profile.ProfileId">
+                    @Html.HttpMethodOverride(HttpVerbs.Delete)
+                    <button class="btn btn-sm btn-success" type="submit">Delete</button>
+                </form>
+            </div>
+        </div>
+        <hr />
+    }
+
+}

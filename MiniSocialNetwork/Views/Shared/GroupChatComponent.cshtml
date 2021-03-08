@@ -1,0 +1,30 @@
+﻿@model IEnumerable<MiniSocialNetwork.Models.Message>
+<!-- This is not used anymore I decided to use inline instead of a partial! -->
+<div class="message-body">
+    <div class="message-container">
+        <ul class="message-list" id="chat">
+            @foreach (MiniSocialNetwork.Models.Message message in Model)
+            {
+                if (message.UserId == ViewBag.CurrentUserId)
+                {
+                    <li class="message-self">
+                        <p class="message-title">@message.Nickname</p>
+                        <p class="message-content">@message.Content</p>
+                    </li>
+                }
+                else
+                {
+                    <li class="message-others">
+                        <p class="message-title">@message.Nickname</p>
+                        <p class="message-content">@message.Content</p>
+                    </li>
+                }
+            }
+        </ul>
+    </div>
+    <div class="message-input">
+        <input type="text" autocomplete="off" id="messageinput" placeholder="Send message" />
+        <button id="sendmessage" class="btn btn-sm btn-success" type="button">Send</button>
+    </div>
+</div>
+
